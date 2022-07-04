@@ -1,13 +1,17 @@
+using ArmApi.Interface;
 using NLog;
 using NLog.Web;
+using ArmApi.Services.GoogleAPI;
 
 var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
 logger.Debug("init main");
 
 try
 {
-    var builder = WebApplication.CreateBuilder(args);
 
+    var builder = WebApplication.CreateBuilder(args);
+    //var configuration = builder.Services.BuildServiceProvider().GetRequiredService<IConfiguration>();
+    //var name = configuration.GetValue<string>("aa");
     // Add services to the container.
     builder.Services.AddMemoryCache(options =>
     {
@@ -15,6 +19,10 @@ try
         options.SizeLimit = 1024;
     });
     builder.Services.AddControllers();
+
+    builder.Services.AddScoped<IGooglePlacesAPI, GoolgePlacesAPI>();
+
+
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
