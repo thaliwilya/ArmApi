@@ -37,7 +37,10 @@ namespace ArmApi.Controllers
         {
             _logger.LogInformation("Hello, this Place Get!");
             var result = await _IGooglePlacesAPI.ApplyAsync(name);
-            return Ok(result);
+            var item = result.results.Select(a => a.geometry.location).ToList();
+
+            //return Ok(result.results);
+            return Ok(item);
         }
     }
 }

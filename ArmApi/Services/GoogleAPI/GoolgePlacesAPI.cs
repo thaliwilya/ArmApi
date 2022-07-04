@@ -31,7 +31,8 @@ namespace ArmApi.Services.GoogleAPI
             //request.AddHeader("API_KEY", "[THIS IS THE API KEY]");
             //var response = await client.GetAsync(request);
             var response = client.Execute<GooglePlacesAPIResponse>(request);
-  ;
+            //response.Data.results
+ ;
             return response.Data;
         }
 
