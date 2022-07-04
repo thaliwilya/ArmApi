@@ -21,16 +21,6 @@ namespace ArmApi.Controllers
             _configuration = configuration;
             _IGooglePlacesAPI = IGooglePlacesAPI;
         }
-        // GET: api/<PlaceController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            _logger.LogInformation("Hello, this Place Get!");
-
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<PlaceController>/5
 
         [HttpGet("queryPlace")]
         public async Task<ActionResult> queryPlaceAsync([FromQuery] string? name)
